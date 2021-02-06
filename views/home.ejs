@@ -1,0 +1,56 @@
+<%- include('header') %>
+<div class="header">
+    <% if (info.result) { %>
+        <h1> <%= info.result? info.result : "" %> </h1>
+    <% } else { %>
+        <h1>Welcome to the Currency Converter</h1>
+    <% } %>    
+</div>
+<div class="center-screen" id='interface' class="text">
+    <div class="MainDiv">
+        <form class="dropdown" >  
+            <Label>Amount:</Label>
+            <Input type="number" id="value" name="value" placeholder="1">
+            <div class="form-group">
+                <Label>From:</Label>
+                <select id="fromCurrency" name="from">
+                    <% for (var i = 0; i < names.length; i++) { %>
+                        <option value="<%= names[i] %>"> <%= names[i].substring(3,6) %> </option>
+                    <% } %>
+                </select><br/> 
+            </div>
+            <div class="form-group ">       
+                <label for=>To:</label>
+                <select id="toCurrency" name="to">
+                    <% for (var i = 0; i < names.length; i++) { %>
+                        <option value="<%= names[i] %>"> <%= names[i].substring(3,6) %> </option>
+                    <% } %>
+                </select>
+            </div>
+            <button type="submit">Convert</button>
+        </form>
+        <p id="lastUpdated">Last Updated: <%= info.lastUpdated %></p>
+    </div>
+</div>
+<button type="button" class="collapsible">Display current exchange rates</button>
+<div class="table-content">        
+    <p class="small-p">Exchange rates are expressed as 1 US dollar converted into the foreign currency.<p>
+    <table>
+        <tr>
+            <td><b>Currency</b></td>
+            <td><b>Current Rate</b> (Equal to 1 USD)</td>
+        </tr>
+        <% for (var i = 0; i < names.length; i++) { %>
+            <tr>
+                <td><%= names[i].substring(3,6) %></td>
+                <td><%= rates[i] %></td>
+            </tr>
+        <% } %>
+    </table>
+</div>
+
+
+<script src ="/static/animation.js"></script>
+
+<%- include('footer') %>
+
